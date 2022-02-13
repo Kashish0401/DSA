@@ -29,7 +29,7 @@ public class search {
         return size;
     }
 
-    void addAny(int e, int pos){        //works for all positions
+    void addAny(int e, int pos){
         Node newest= new Node(e,null);
         if(isEmpty()){
             head=tail=newest;

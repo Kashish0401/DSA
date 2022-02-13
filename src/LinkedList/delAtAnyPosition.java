@@ -50,15 +50,28 @@ public class delAtAnyPosition {
 
     void addAny(int e, int pos){
         Node newest = new Node(e,null);
-        Node p=head;
-        int i=1;
-        while(i<pos-1){
-            p=p.next;
-            i++;
+        if(isEmpty()){
+            head=tail=newest;
+            size++;
         }
-        newest.next=p.next;
-        p.next=newest;
-        size++;
+        else if(pos==1){
+            head=tail=newest;
+            head=newest;
+            size++;
+        }
+        else {
+            Node p = head;
+            int i=1;
+            while(i<pos-1){
+                p=p.next;
+                i++;
+            }
+            newest.next=p.next;
+            p.next=newest;
+            size++;
+            if(pos==length())
+                tail=newest;
+        }
     }
 
     public int removeFirst(){
@@ -98,6 +111,10 @@ public class delAtAnyPosition {
     public int removeAny(int pos){
         if(isEmpty()){
             System.out.println("Empty");
+            return -1;
+        }
+        if (pos < 1 || pos > length()) {
+            System.out.println("Invalid position");
             return -1;
         }
         if(pos==1){

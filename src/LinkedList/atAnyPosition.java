@@ -27,17 +27,30 @@ public class atAnyPosition {
         return size;
     }
 
-    void addAny(int e, int pos){        //doesn't work for pos 1
+    void addAny(int e, int pos){
         Node newest = new Node(e,null);
-        Node p=head;
-        int i=1;
-        while(i<pos-1){
-            p=p.next;
-            i++;
+        if(isEmpty()){
+            head=tail=newest;
+            size++;
         }
-        newest.next= p.next;
-        p.next=newest;
-        size=size+1;
+        else if(pos==1){
+            head=tail=newest;
+            head=newest;
+            size++;
+        }
+        else {
+            Node p = head;
+            int i=1;
+            while(i<pos-1){
+                p=p.next;
+                i++;
+            }
+            newest.next=p.next;
+            p.next=newest;
+            size++;
+            if(pos==length())
+                tail=newest;
+        }
     }
 
     public void addLast(int e){
