@@ -35,6 +35,11 @@ public class search {
             head=tail=newest;
             size++;
         }
+        else if(pos==1){
+            head=tail=newest;
+            head=newest;
+            size++;
+        }
         else {
             Node p = head;
             int i=1;
