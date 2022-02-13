@@ -27,7 +27,19 @@ public class atAnyPosition {
         return size;
     }
 
-    void addAny(int e, int pos){        //doesn't work for pos 1
+    void addAny(int e, int pos){
+        if(pos == 0) {
+            // System.out.println("Invalid Position! Index starts from 1.";
+            return;
+        }
+        if (pos == 1) {
+            addFirst(e);
+            return;
+        }
+        if (pos > size) {
+            // System.out.println("Invalid Position! List Size is -> " + size);
+            return;
+        }
         Node newest = new Node(e,null);
         Node p=head;
         int i=1;

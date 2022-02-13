@@ -100,12 +100,16 @@ public class delAtAnyPosition {
             System.out.println("Empty");
             return -1;
         }
+        if(pos == 0 || pos > size)
+            return -1;
+        int firstElement = head.element;
         if(pos==1){
             removeFirst();
+            return firstElement;
         }
         Node p=head;
-        int i=1;
-        while(i<pos-1){
+        int i=0;
+        while(i<pos-2){
             p=p.next;
             i++;
         }
