@@ -53,7 +53,7 @@ public class usingArrays {
     }
 
     public void display(){
-        for(int i=0;i<top;i++){
+        for(int i=top-1;i>=0;i--){
             System.out.print(data[i]+" ");
         }
         System.out.println();
