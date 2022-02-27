@@ -16,16 +16,18 @@ public class linkedList{
     private int size;
 
     public linkedList(){
-        head=null;
-        tail=null;
+        head=tail=null;
         size=0;
     }
     public boolean isEmpty(){
         return size==0;
     }
 
-    public int length(){
-        return size;
+    public int length(Node p){
+        if(p!=null){
+            return 1+length(p.next);
+        }
+        return 0;
     }
 
     public void addLast(int e){
@@ -64,6 +66,7 @@ public class linkedList{
         System.out.println();
         l.display_recursive(l.head);
         System.out.println();
+        System.out.println(l.length(l.head));
     }
 }
 
