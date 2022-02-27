@@ -38,13 +38,12 @@ public class linkedList{
         size=size+1;
     }
 
-    public void display(){
-        Node p=head;
-        while(p!=null){
-            System.out.print(p.element +" ");
-            p=p.next;
+    public void display(Node p){
+        if(p!=null){
+            System.out.print(p.element+ " ");
+            display_recursive(p.next);
         }
-        System.out.println();
+        return;
     }
 
     public void display_recursive(Node p){
@@ -61,7 +60,8 @@ public class linkedList{
         l.addLast(12);
         l.addLast(4);
         l.addLast(45);
-        l.display();
+        l.display(l.head);
+        System.out.println();
         l.display_recursive(l.head);
         System.out.println();
     }
