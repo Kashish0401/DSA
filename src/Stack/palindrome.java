@@ -1,10 +1,12 @@
 package Stack;
 
-public class usingLinkedList {
-    static class Node{
-        int element;
+import java.util.Scanner;
+
+public class palindrome {
+    class Node{
+        char element;
         Node next;
-        public Node(int e, Node n){
+        public Node(char e, Node n){
             element=e;
             next=n;
         }
@@ -13,7 +15,7 @@ public class usingLinkedList {
     private Node top;
     private int size;
 
-    public usingLinkedList(){
+    public palindrome(){
         top=null;
         size=0;
     }
@@ -26,7 +28,7 @@ public class usingLinkedList {
         return size==0;
     }
 
-    public void push(int e){
+    public void push(char e){
         Node newest= new Node(e,null);
         if(isEmpty()){
             top=newest;
@@ -38,12 +40,12 @@ public class usingLinkedList {
         size++;
     }
 
-    public int pop(){
+    public char pop(){
         if(isEmpty()){
             System.out.println("Stack is Empty");
-            return -1;
+            return 'b';
         }
-        int e= top.element;
+        char e= top.element;
         top=top.next;
         size--;
         return e;
@@ -65,18 +67,22 @@ public class usingLinkedList {
         }
         System.out.println();
     }
-
     public static void main(String[] args) {
-        usingLinkedList s= new usingLinkedList();
-        s.push(5);
-        s.push(4);
-        s.push(67);
-        s.display();
-        System.out.println(s.peek());
-        System.out.println(s.pop());
-        System.out.println(s.pop());
-        s.push(33);
-        s.display();
-        System.out.println(s.length());
+        palindrome s = new palindrome();
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+        String str= String.valueOf(num);
+
+        for(int i=0;i<str.length();i++){
+            s.push(str.charAt(i));
+        }
+        String str2= "";
+        for(int i=0;i<str.length();i++)
+            str2 += s.pop();
+        if(str.equals(str2))
+            System.out.println("Palindrome");
+        else
+            System.out.println("NOt");
     }
 }
+
