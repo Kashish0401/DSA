@@ -3,7 +3,7 @@ package CircularLinkedList;
 import java.util.Scanner;
 
 public class insertAtLast {
-    class Node{
+    static class Node{
         int element;
         Node next;
         public Node(int e, Node n){

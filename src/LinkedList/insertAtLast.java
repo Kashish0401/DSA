@@ -47,12 +47,23 @@ public class insertAtLast{
         System.out.println();
     }
 
+    public void display_recursive(Node p){
+        if(p!=null){
+            display_recursive(p.next);
+            System.out.print(p.element+ " ");
+        }
+        return;
+    }
+
     public static void main(String[] args) {
         insertAtLast l=new insertAtLast();
         l.addLast(7);
         l.addLast(12);
         l.addLast(4);
+        l.addLast(45);
         l.display();
+        l.display_recursive(l.head);
+        System.out.println();
         System.out.println(l.length());
     }
 }
