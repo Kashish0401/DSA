@@ -62,9 +62,7 @@ public class deleteANyPosition {
             return 0;
         }
         if(pos==1){
-            head=head.next;
-            tail.next=head;
-            size--;
+            deleteFirst.removeFirst();
         }
         Node p = head;
         for (int i = 1; i < pos - 1; i++)
@@ -92,7 +90,7 @@ public class deleteANyPosition {
         for(int i=0;i<n;i++)
             l.addAny(sc.nextInt(),i+1);
         l.addAny(20,3);
-        l.removeANy(6) ;
+        l.removeANy(1) ;
         l.display();
         System.out.println(l.length());
     }

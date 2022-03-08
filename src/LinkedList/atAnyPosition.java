@@ -35,7 +35,6 @@ public class atAnyPosition {
         }
         else if(pos==1){
             head=tail=newest;
-            head=newest;
             size++;
         }
         else {

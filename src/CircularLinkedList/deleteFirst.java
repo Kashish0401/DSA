@@ -12,9 +12,9 @@ public class deleteFirst {
         }
     }
 
-    private Node head;
-    private Node tail;
-    private int size;
+    private static Node head;
+    private static Node tail;
+    private static int size;
 
     public deleteFirst(){
         head=tail=null;
@@ -25,7 +25,7 @@ public class deleteFirst {
         return size;
     }
 
-    public boolean isEmpty(){
+    public static boolean isEmpty(){
         return size==0;
     }
 
@@ -39,7 +39,7 @@ public class deleteFirst {
         size++;
     }
 
-    int removeFirst(){
+    static int removeFirst(){
         if(isEmpty()){
             System.out.println("List is empty");
             return -1;

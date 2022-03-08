@@ -111,7 +111,7 @@ public class insertAtAnyPos{
 
     public int removeAny(int pos){
         if(pos<1 || pos> length()+1){
-            System.out.println("Invalid positiom");
+            System.out.println("Invalid position");
             return -1;
         }
         if(pos==size){
