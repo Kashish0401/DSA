@@ -20,7 +20,7 @@ public class binarySearch {
             {
                 l=m+1;
             }
-        }while(m>0);
+        }while(l<h);
         return -1;
     }
     public static void main(String[] args) {
