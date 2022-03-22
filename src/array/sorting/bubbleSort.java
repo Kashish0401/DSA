@@ -36,3 +36,6 @@ public class bubbleSort {
         obj.printArray(arr,n);
     }
 }
+
+//It is a stable algo. It has O(n^2) as time complexity for swapping and comparisons
+// In best case O(n^2) for comparisons and o(n) for swapping.

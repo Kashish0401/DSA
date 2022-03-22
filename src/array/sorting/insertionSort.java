@@ -33,3 +33,5 @@ public class insertionSort {
         printArray(arr);
     }
 }
+
+//it is a stable sorting algorithm. It has O(n^2) complexity for comparison and swapping
