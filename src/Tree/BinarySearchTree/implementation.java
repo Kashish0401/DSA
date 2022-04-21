@@ -63,6 +63,22 @@ public class implementation{
         }
     }
 
+    public void postOrder(Node tempRoot){
+        if(tempRoot!=null){
+            postOrder(tempRoot.left);
+            postOrder(tempRoot.right);
+            System.out.print(tempRoot.element + " ");
+        }
+    }
+
+    public void preOrder(Node tempRoot){
+        if(tempRoot!=null){
+            System.out.print(tempRoot.element + " ");
+            preOrder(tempRoot.left);
+            preOrder(tempRoot.right);
+        }
+    }
+
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
         implementation b= new implementation();
@@ -73,10 +89,12 @@ public class implementation{
         b.insert(b.root,sc.nextInt());
         System.out.print("\nInOrder -> ");
         b.inorder(b.root);
+        System.out.print("\nPreOrder -> ");
+        b.preOrder(b.root);
+        System.out.print("\nPostOrder -> ");
+        b.postOrder(b.root);
         System.out.println("\nEnter element to be searched");
         b.search(b.root,sc.nextInt());
-
-        //System.out.print("/nPreOrder -> ");
     }
 }
 
@@ -87,6 +105,8 @@ Enter the elements to be inserted in BST order
 5 3 8 1 4 6 9
 
 InOrder -> 1 3 4 5 6 8 9
+PreOrder -> 5 3 1 4 8 6 9
+PostOrder -> 1 4 3 6 9 8 5
 Enter element to be searched
 9
 Found */
