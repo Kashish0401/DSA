@@ -1,6 +1,5 @@
 package Tree.BinarySearchTree;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class implementation{
@@ -37,6 +36,40 @@ public class implementation{
         tempRoot=n;
         }
         return tempRoot;
+    }
+
+    public Node delete(Node tempRoot,Node p, int e){
+        if(tempRoot!=null){
+            if(e==tempRoot.element){
+                // Delete a leaf node
+                if(tempRoot.left==null && tempRoot.right==null){
+                    if(e<p.element){
+                        p.left=null;
+                    }
+                    else{
+                        p.right=null;
+                    }
+                    return null;
+                }
+            }
+            if(e<tempRoot.element && e!=tempRoot.left.element){
+                p=p.left;
+                tempRoot.left=delete(tempRoot.left,p,e);
+            }
+            else if(e==tempRoot.left.element){
+                tempRoot=tempRoot.left;
+                delete(tempRoot,p,e);
+            }
+            else if(e>tempRoot.element && e!=tempRoot.right.element){
+                p=p.right;
+                tempRoot.right=delete(tempRoot.right,p,e);
+            }
+            else if(e==tempRoot.right.element){
+                tempRoot=tempRoot.right;
+                delete(tempRoot,p,e);
+            }
+        }
+        return p;
     }
 
     public Node search(Node tempRoot,int e){
@@ -95,6 +128,10 @@ public class implementation{
         b.postOrder(b.root);
         System.out.println("\nEnter element to be searched");
         b.search(b.root,sc.nextInt());
+        System.out.println("Enter an element to be deleted");
+        b.delete(b.root,b.root,sc.nextInt());
+        System.out.print("\nInOrder -> ");
+        b.inorder(b.root);
     }
 }
 
