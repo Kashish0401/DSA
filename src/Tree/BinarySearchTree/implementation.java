@@ -7,10 +7,9 @@ public class implementation{
         int element;
         Node left,right;
 
-        public Node(int e,Node left,Node right){
+        public Node(int e){
             element=e;
-            this.left=left;
-            this.right=right;
+            left=right=null;
         }
     }
 
@@ -20,69 +19,62 @@ public class implementation{
         root=null;
     }
 
-    public Node insert(Node tempRoot,int e){
-        if(tempRoot!=null){
-            if(e== tempRoot.element)
-                return null;
-            else if(e< tempRoot.element)
-                tempRoot.left=insert(tempRoot.left,e);
-            else if(e> tempRoot.element)
-                tempRoot.right=insert(tempRoot.right,e);
-        }
-        else{
-        Node n=new Node(e,null,null);
-        if(root==null)
+    public Node insert(Node root ,int e){
+        if(root==null){
+            Node n = new Node(e);
             root=n;
-        tempRoot=n;
+            if(this.root==null)
+                this.root=n;
+            return root;
         }
-        return tempRoot;
+        else if(root.element<e)
+            root.right=insert(root.right,e);
+        else if(root.element>e)
+            root.left=insert(root.left,e);
+
+        return root;
     }
 
-    public Node delete(Node tempRoot,Node p, int e){
-        if(tempRoot!=null){
-            if(e==tempRoot.element){
-                // Delete a leaf node
-                if(tempRoot.left==null && tempRoot.right==null){
-                    if(e<p.element){
-                        p.left=null;
-                    }
-                    else{
-                        p.right=null;
-                    }
-                    return null;
-                }
-            }
-            if(e<tempRoot.element && e!=tempRoot.left.element){
-                p=p.left;
-                tempRoot.left=delete(tempRoot.left,p,e);
-            }
-            else if(e==tempRoot.left.element){
-                tempRoot=tempRoot.left;
-                delete(tempRoot,p,e);
-            }
-            else if(e>tempRoot.element && e!=tempRoot.right.element){
-                p=p.right;
-                tempRoot.right=delete(tempRoot.right,p,e);
-            }
-            else if(e==tempRoot.right.element){
-                tempRoot=tempRoot.right;
-                delete(tempRoot,p,e);
-            }
-        }
-        return p;
+    public static Node delete(Node root, int e){
+         if(root==null)
+             return root;
+         if(e<root.element)
+             root.left=delete(root.left,e);
+         else if(e>root.element)
+             root.right=delete(root.right,e);
+         else{
+             if(root.right==null)
+                 return root.left;
+             else if(root.left==null)
+                 return root.right;
+
+             root.element=minValue(root.right);
+             root.right=delete(root.right,root.element);
+         }
+         return root;
     }
 
-    public Node search(Node tempRoot,int e){
-        if(tempRoot!=null) {
-            if (e == tempRoot.element) {
+    public static int minValue(Node root){
+        int minv=root.element;
+        while(root.left!=null){
+            minv=root.left.element;
+            root=root.left;
+        }
+        return minv;
+    }
+
+
+    public Node search(Node root,int e){
+        if(root!=null) {
+            if (e == root.element) {
                 System.out.println("Found");
-                return tempRoot;
+                return root;
             }
-            if (e < tempRoot.element) {
-                tempRoot.left = search(tempRoot.left, e);
+            if (e < root.element) {
+                root.left = search(root.left, e);
             }
-            if (e > tempRoot.element) {
-                tempRoot.right = search(tempRoot.right, e);
+            if (e > root.element) {
+                root.right = search(root.right, e);
             }
         }
         return null;
@@ -115,30 +107,34 @@ public class implementation{
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
         implementation b= new implementation();
-        System.out.println("Enter no of elements");
-        int n= sc.nextInt();
-        System.out.println("Enter the elements to be inserted in BST order");
-        for(int i=0;i<n;i++)
-        b.insert(b.root,sc.nextInt());
+        int e;
+        while (true) {
+            System.out.println("Enter element");
+            e=sc.nextInt();
+            if(e==-1)
+                break;
+            b.insert(b.root,e);
+        }
         System.out.print("\nInOrder -> ");
         b.inorder(b.root);
         System.out.print("\nPreOrder -> ");
         b.preOrder(b.root);
         System.out.print("\nPostOrder -> ");
         b.postOrder(b.root);
+
         System.out.println("\nEnter element to be searched");
         b.search(b.root,sc.nextInt());
+
         System.out.println("Enter an element to be deleted");
-        b.delete(b.root,b.root,sc.nextInt());
+        b.delete(b.root,sc.nextInt());
+
         System.out.print("\nInOrder -> ");
         b.inorder(b.root);
     }
 }
 
 
-/* Enter no of elements
-7
-Enter the elements to be inserted in BST order
+/* Enter element
 5 3 8 1 4 6 9
 
 InOrder -> 1 3 4 5 6 8 9
@@ -146,4 +142,9 @@ PreOrder -> 5 3 1 4 8 6 9
 PostOrder -> 1 4 3 6 9 8 5
 Enter element to be searched
 9
-Found */
+Found
+Enter an element to be deleted
+2
+
+InOrder -> 3 4 5 6 8 9
+*/

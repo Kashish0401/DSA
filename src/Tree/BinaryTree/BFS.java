@@ -1,11 +1,13 @@
 package Tree.BinaryTree;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
-public class sizeOfTree {
+public class BFS {
     static Scanner sc=null;
 
-    class Node{
+    static class Node{
         int element;
         Node left,right;
         Node(int element){
@@ -38,22 +40,36 @@ public class sizeOfTree {
         preOrder(root.right);
     }
 
-    public int size(Node root){
-        if(root==null) return 0;
-
-        return size(root.left)+size(root.right)+1;
+    public static void levelOrder(Node root){
+        Queue<Node> q= new LinkedList<>();
+        q.add(root);
+        q.add(null);
+        while(!q.isEmpty()){
+            Node curr= q.poll();
+            if(curr==null){
+                if(q.isEmpty()) break;
+                q.add(null);
+                System.out.println();
+                continue;
+            }
+            System.out.print(curr.element + " ");
+            if(curr.left!=null){
+                q.add(curr.left);
+            }
+            if(curr.right!=null){
+                q.add(curr.right);
+            }
+        }
     }
 
     public static void main(String[] args) {
-        sc = new Scanner(System.in);
-        sizeOfTree t = new sizeOfTree();
+        sc= new Scanner(System.in);
+        BFS t= new BFS();
 
         System.out.println("Enter data: ");
-        t.root = t.insert(sc.nextInt());
+        t.root=t.insert(sc.nextInt());
 
-        preOrder(t.root);
+        levelOrder(t.root);
         System.out.println();
-
-        System.out.println("Size of tree = " + t.size(t.root));
     }
 }

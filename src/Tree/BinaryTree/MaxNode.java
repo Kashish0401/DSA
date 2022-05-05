@@ -2,12 +2,13 @@ package Tree.BinaryTree;
 
 import java.util.Scanner;
 
-public class sizeOfTree {
+public class MaxNode {
     static Scanner sc=null;
 
-    class Node{
+    static class Node{
         int element;
-        Node left,right;
+        Node left;
+        Node right;
         Node(int element){
             this.element=element;
         }
@@ -38,22 +39,29 @@ public class sizeOfTree {
         preOrder(root.right);
     }
 
-    public int size(Node root){
-        if(root==null) return 0;
+    public int max(Node root){
+        if(root==null)
+            return Integer.MIN_VALUE;
+        return Math.max(root.element,Math.max(max(root.left),max(root.right)));
+    }
 
-        return size(root.left)+size(root.right)+1;
+    public int min(Node root){
+        if(root==null)
+            return Integer.MAX_VALUE;
+        return Math.min(root.element,Math.min(min(root.left),min(root.right)));
     }
 
     public static void main(String[] args) {
-        sc = new Scanner(System.in);
-        sizeOfTree t = new sizeOfTree();
+        sc= new Scanner(System.in);
+        MaxNode t= new MaxNode();
 
         System.out.println("Enter data: ");
-        t.root = t.insert(sc.nextInt());
+        t.root=t.insert(sc.nextInt());
 
         preOrder(t.root);
         System.out.println();
 
-        System.out.println("Size of tree = " + t.size(t.root));
+        System.out.println("Max Node of tree = "+ t.max(t.root));
+        System.out.println("Min Node of tree = "+ t.min(t.root));
     }
 }
