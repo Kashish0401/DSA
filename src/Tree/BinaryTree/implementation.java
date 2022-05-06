@@ -1,6 +1,5 @@
 package Tree.BinaryTree;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class implementation {
@@ -33,11 +32,11 @@ public class implementation {
         return root;
     }
 
-    public static void preOrder(Node root){
+    public static void inOrder(Node root){
         if(root==null) return;
         System.out.print(root.element + " ");
-        preOrder(root.left);
-        preOrder(root.right);
+        inOrder(root.left);
+        inOrder(root.right);
     }
 
     public static void main(String[] args) {
@@ -47,7 +46,7 @@ public class implementation {
         System.out.println("Enter data: ");
         t.root=t.insert(sc.nextInt());
 
-        preOrder(t.root);
+        inOrder(t.root);
 
         System.out.println();
     }
