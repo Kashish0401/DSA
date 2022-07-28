@@ -36,7 +36,7 @@ public class k {
     {
         k obj=new k();
         String str="{{{{((()))}}}";
-        boolean result=obj.isbraketmatchin(str);
+        boolean result=obj.isMatch(str);
         System.out.println(result);
     }
 }
