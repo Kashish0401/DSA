@@ -15,3 +15,4 @@ class Solution
         return min;
     }
 }
+// O(n) time complexity
